@@ -20,12 +20,12 @@ exports["throws"] = function(block, error, message){
 		return when(block(), function(){
 			throw new Error(message || ("Error" || error.name) + " was expected to be thrown and was not");
 		}, function(e){
-			if(error && !(e instanceof error)){
+			if(!error || !(e instanceof error)){
 				throw e;
 			}
 		});
 	}catch(e){
-		if(error && !(e instanceof error)){
+		if(!error || !(e instanceof error)){
 			throw e;
 		}
 	}
